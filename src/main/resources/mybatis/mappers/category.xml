@@ -8,7 +8,16 @@
 			insert 
 			into category 
 			values(null,'하이','방문해주셔서 감사합니다',now(),#{id})
-			
 		]]>
 	</insert>
+	<select id="getlist" resultType="categoryvo" parameterType="String">
+		<![CDATA[
+			select no,
+			name,
+			explanation,
+			date_format(upload_date,'%Y/%m/%d') as upload_date
+			from category
+			where blog_id = #{id}
+		]]>
+	</select>
 </mapper>

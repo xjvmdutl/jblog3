@@ -27,7 +27,12 @@
 		</mvc:interceptor>
 		
 	</mvc:interceptors>
-	<mvc:annotation-driven />
+	<mvc:annotation-driven >
+	<!--Argument Resolver-->
+		<mvc:argument-resolvers>
+			<bean class="kr.co.itcen.jblog.security.AuthUserHandlerMethodArgumentResolver" />		
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
 		<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"

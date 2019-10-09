@@ -5,7 +5,7 @@ public class CategoryVo {
 	private String name;
 	private String explanation;
 	private String upload_date;
-	private String blog_no;
+	private String blog_id;
 	public Long getNo() {
 		return no;
 	}
@@ -30,16 +30,16 @@ public class CategoryVo {
 	public void setUpload_date(String upload_date) {
 		this.upload_date = upload_date;
 	}
-	public String getBlog_no() {
-		return blog_no;
+	public String getBlog_id() {
+		return blog_id;
 	}
-	public void setBlog_no(String blog_no) {
-		this.blog_no = blog_no;
+	public void setBlog_id(String blog_id) {
+		this.blog_id = blog_id;
 	}
 	@Override
 	public String toString() {
 		return "CategoryVo [no=" + no + ", name=" + name + ", explanation=" + explanation + ", upload_date="
-				+ upload_date + ", blog_no=" + blog_no + "]";
+				+ upload_date + ", blog_id=" + blog_id + "]";
 	}
 	
 }
