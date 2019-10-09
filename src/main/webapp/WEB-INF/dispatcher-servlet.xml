@@ -25,7 +25,6 @@
 			<mvc:mapping path="/user/logout"/>
 			<bean class="kr.co.itcen.jblog.security.LogoutInterceptor"/>
 		</mvc:interceptor>
-		
 	</mvc:interceptors>
 	<mvc:annotation-driven >
 	<!--Argument Resolver-->
@@ -33,6 +32,8 @@
 			<bean class="kr.co.itcen.jblog.security.AuthUserHandlerMethodArgumentResolver" />		
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
+	<mvc:resources location="file:/uploads/" mapping="/images/**" />
+	
 		<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -41,7 +42,16 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="1" />
 	</bean>
+	<bean id="multipartResolver" 
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 최대업로드 가능한 바이트크기 -->
+		<property name="maxUploadSize" value="52428800" />
+		<!-- 디스크에 임시 파일을 생성하기 전에 메모리에 보관할수있는 최대 바이트 크기 -->
+		<!-- property name="maxInMemorySize" value="52428800" /-->
+		<!-- defaultEncoding -->
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
 	<context:annotation-config />
 	<context:component-scan
-		base-package="kr.co.itcen.jblog.controller" />
+		base-package="kr.co.itcen.jblog.controller, kr.co.itcen.jblog.exception" />
 </beans>

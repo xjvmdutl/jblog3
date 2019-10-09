@@ -7,8 +7,22 @@
 		<![CDATA[
 			insert 
 			into blog 
-			values(#{id},concat(#{id},'님의 블러그입니다'),'/assets/images/spring-logo.jpg')
+			values(#{id},concat(#{id},'님의 블러그입니다'),'/images/spring-logo')
 		]]>
 	</insert>
-
+	<select id="get" parameterType="String" resultType="blogvo">
+	<![CDATA[
+		select id,title,logo
+		from blog
+		where id = #{id}
+	]]>
+	</select>
+	<update id="update" parameterType="blogvo">
+	<![CDATA[
+		update blog 
+		set logo = #{logo},
+			title = #{title}
+		where id= #{id}
+	]]>
+	</update>
 </mapper>
