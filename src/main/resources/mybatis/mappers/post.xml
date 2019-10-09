@@ -9,7 +9,8 @@
 			select no,
 			title,
 			contents,
-			date_format(written_date,'%Y/%m/%d') as written_date
+			date_format(written_date,'%Y/%m/%d') as written_date,
+			category_no
 			from post
 			where category_no = #{category_no}
 		]]>

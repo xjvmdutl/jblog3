@@ -48,6 +48,7 @@ public class BlogController {
 			postvo= blogService.getPost(postno,categoryno);
 		}
 		model.addAttribute("post",postvo);
+		model.addAttribute("id",id);
 		if(id.equals(vo.getId()))
 			model.addAttribute("isMe",true);
 		return "blog/blog-main";

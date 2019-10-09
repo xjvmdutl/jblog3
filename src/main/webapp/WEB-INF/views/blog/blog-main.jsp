@@ -28,7 +28,7 @@
 				<c:if test="${ not empty postList}">
 					<ul class="blog-list">
 					<c:forEach items='${postList }' var='postvo'>
-						<li><a href="">${postvo.title} </a> <span>${postvo.written_date }</span></li>
+						<li><a href="${pageContext.request.contextPath}/${id}/${postvo.category_no}/${postvo.no}">${postvo.title} </a> <span>${postvo.written_date }</span></li>
 					</c:forEach>
 					</ul>
 				</c:if>				
