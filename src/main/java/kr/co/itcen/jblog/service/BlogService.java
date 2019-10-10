@@ -1,15 +1,12 @@
 package kr.co.itcen.jblog.service;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Calendar;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import kr.co.itcen.jblog.exception.FileUploadException;
 import kr.co.itcen.jblog.repository.BlogDao;
 import kr.co.itcen.jblog.repository.CategoryDao;
@@ -36,8 +33,7 @@ public class BlogService {
 	}
 	public PostVo getPost(Long postno,Long categoryno) {
 		return postDao.getPost(postno,categoryno);
-	}
-	
+	}	
 	public BlogVo get(String id) {
 		return blogDao.get(id);
 	}
@@ -73,5 +69,15 @@ public class BlogService {
 		filename += (".") + extName;
 		return filename;
 	}
-
+	public List<CategoryVo> getCategoryList(String id) {
+		return categoryDao.getCategoryList(id);
+	}
+	public List<CategoryVo> getCategorytitle(String id) {
+		List<CategoryVo> list=categoryDao.getCategorytitle(id);
+		return list;
+	}
+	public Boolean insertPost(PostVo vo) {
+		return postDao.insert(vo);
+	}
+	
 }

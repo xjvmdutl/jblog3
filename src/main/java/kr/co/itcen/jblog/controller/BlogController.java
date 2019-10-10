@@ -1,5 +1,4 @@
 package kr.co.itcen.jblog.controller;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -19,8 +18,10 @@ import kr.co.itcen.jblog.vo.CategoryVo;
 import kr.co.itcen.jblog.vo.PostVo;
 import kr.co.itcen.jblog.vo.UserVo;
 
-@RequestMapping("/{id:(?!assets).*}")//assets밑에 있는 파일제외 모두 받는다
+@RequestMapping("/blog/{id:(?!assets).*}")//assets밑에 있는 파일제외 모두 받는다
+
 @Controller
+
 public class BlogController {
 	@Autowired
 	private BlogService blogService;
@@ -51,7 +52,7 @@ public class BlogController {
 			postvo= blogService.getPost(postno,categoryno);
 		}
 		BlogVo blogvo = blogService.get(id);
-		model.addAttribute("blog",blogvo);
+		model.addAttribute("vo",blogvo);
 		model.addAttribute("post",postvo);
 		model.addAttribute("id",id);
 		if(id.equals(vo.getId()))
@@ -70,6 +71,29 @@ public class BlogController {
 			@PathVariable String id,
 			BlogVo vo) {
 		blogService.update(multipartFile,vo);
-		return "redirect:/"+id;
+		return "redirect:/blog/"+id;
+	}
+	@RequestMapping("/admin/category")
+	public String category(@PathVariable String id,Model model) {
+		List<CategoryVo> list= blogService.getCategoryList(id);
+		model.addAttribute("list",list);
+		BlogVo blogvo = blogService.get(id);
+		model.addAttribute("vo",blogvo);
+		return "blog/blog-admin-category";
+	}
+	@RequestMapping("/admin/write")
+	public String write(@PathVariable String id,Model model) {
+		List<CategoryVo> list= blogService.getCategorytitle(id);
+		
+		BlogVo blogvo = blogService.get(id);
+		model.addAttribute("list",list);
+		model.addAttribute("vo",blogvo);
+		return "blog/blog-admin-write";
+	}
+	@RequestMapping(value = "/admin/write", method = RequestMethod.POST)
+	public String write(@PathVariable String id,PostVo vo,@RequestParam("category") Long no) {
+		vo.setCategory_no(no);
+		blogService.insertPost(vo);
+		return "redirect:/blog/"+id;
 	}
 }

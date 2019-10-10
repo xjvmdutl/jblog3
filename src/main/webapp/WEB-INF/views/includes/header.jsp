@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <div id="header">
-	<h1>Spring 이야기</h1>
+	<h1>${vo.title }</h1>
 	<ul>
 		<c:choose>
 		<c:when test="${empty authUser }">
@@ -15,7 +15,7 @@
 		</c:otherwise>
 		</c:choose>
 		<c:if test="${isMe }">
-			<li><a href="${pageContext.request.contextPath}/${authUser.id}/admin/basic">블로그 관리</a></li>
+			<li><a href="${pageContext.request.contextPath}/blog/${authUser.id}/admin/basic">블로그 관리</a></li>
 		</c:if>
 	</ul>
 </div>

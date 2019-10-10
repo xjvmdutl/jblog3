@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns="http://www.springframework.org/schema/beans"
@@ -14,6 +13,13 @@
 	http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd">
+	<mvc:annotation-driven >
+	<!--Argument Resolver-->
+		<mvc:argument-resolvers>
+			<bean class="kr.co.itcen.jblog.security.AuthUserHandlerMethodArgumentResolver" />		
+		</mvc:argument-resolvers>
+	</mvc:annotation-driven>
+	<mvc:resources location="file:/uploads/" mapping="/images/**" />
 	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
 	<mvc:default-servlet-handler />
 	<mvc:interceptors>
@@ -26,14 +32,6 @@
 			<bean class="kr.co.itcen.jblog.security.LogoutInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
-	<mvc:annotation-driven >
-	<!--Argument Resolver-->
-		<mvc:argument-resolvers>
-			<bean class="kr.co.itcen.jblog.security.AuthUserHandlerMethodArgumentResolver" />		
-		</mvc:argument-resolvers>
-	</mvc:annotation-driven>
-	<mvc:resources location="file:/uploads/" mapping="/images/**" />
-	
 		<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"

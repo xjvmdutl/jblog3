@@ -19,10 +19,16 @@ public class CategoryDao {
 		return count ==1;
 
 	}
-
 	public List<CategoryVo> getList(String id) {
 		List<CategoryVo> list = sqlSession.selectList("category.getlist",id);
 		return list;
 	}
-
+	public List<CategoryVo> getCategoryList(String id) {
+		List<CategoryVo> list = sqlSession.selectList("category.list",id);
+		return list;
+	}
+	public List<CategoryVo> getCategorytitle(String id) {
+		List<CategoryVo> list = sqlSession.selectList("category.titlelist",id);
+		return list;
+	}
 }

@@ -27,5 +27,10 @@ public class PostDao {
 		PostVo vo = sqlSession.selectOne("post.getPost",map);
 		return vo;
 	}
+
+	public Boolean insert(PostVo vo) {
+		int count=sqlSession.insert("post.insert",vo);
+		return count==1;
+	}
 	
 }

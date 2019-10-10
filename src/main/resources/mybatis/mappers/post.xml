@@ -3,7 +3,6 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="post">
 <!-- 쿼리 -->
-	
 	<select id="getList" resultType="postvo" parameterType="long">
 		<![CDATA[
 			select no,
@@ -26,4 +25,8 @@
 			and category_no=#{category_no}
 		]]>
 	</select>
+	<insert id="insert" parameterType="postvo">
+		insert into post
+		values(null,#{title},#{contents},now(),#{category_no})
+	</insert>
 </mapper>
