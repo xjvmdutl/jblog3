@@ -32,5 +32,10 @@ public class PostDao {
 		int count=sqlSession.insert("post.insert",vo);
 		return count==1;
 	}
+
+	public Boolean delete(Long no) {
+		int count = sqlSession.delete("post.delete",no);
+		return count>=0;
+	}
 	
 }

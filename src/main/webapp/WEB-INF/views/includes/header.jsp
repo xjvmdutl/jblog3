@@ -15,7 +15,7 @@
 		</c:otherwise>
 		</c:choose>
 		<c:if test="${isMe }">
-			<li><a href="${pageContext.request.contextPath}/blog/${authUser.id}/admin/basic">블로그 관리</a></li>
+			<li><a href="${pageContext.request.contextPath}/${authUser.id}/admin/basic">블로그 관리</a></li>
 		</c:if>
 	</ul>
 </div>

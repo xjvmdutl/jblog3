@@ -39,4 +39,30 @@
 			where blog_id = #{blog_id}
 		]]>
 	</select>
+	
+	
+	<insert id="insert" parameterType="categoryvo">
+	<![CDATA[
+		insert 
+			into category 
+			values(null,#{name},#{explanation},now(),#{blog_id})
+	]]>
+	<selectKey keyProperty="no" resultType="long" order="AFTER">
+		<![CDATA[
+			select last_insert_id()
+		]]>
+	</selectKey>
+	</insert>
+	<select id="get" resultType="categoryvo" parameterType="long">
+		<![CDATA[
+			select 	no,name,explanation,blog_id
+			from category
+			where no = #{no}
+		]]>
+	</select>
+	<delete id="delete" parameterType="long">
+	<![CDATA[
+		delete from category where no = #{no}
+	]]>
+	</delete>
 </mapper> 

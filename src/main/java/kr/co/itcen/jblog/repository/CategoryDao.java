@@ -31,4 +31,17 @@ public class CategoryDao {
 		List<CategoryVo> list = sqlSession.selectList("category.titlelist",id);
 		return list;
 	}
+	public Long insert(CategoryVo vo) {
+		int count =sqlSession.insert("category.insert",vo); 
+		return vo.getNo();
+	}
+	public CategoryVo get(Long no) {
+		CategoryVo vo = sqlSession.selectOne("category.get",no);
+		return vo;
+	}
+	public Boolean delete(Long no) {
+		int count = sqlSession.delete("category.delete",no);
+		return count==1;
+	
+	}
 }
