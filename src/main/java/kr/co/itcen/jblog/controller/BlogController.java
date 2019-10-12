@@ -60,7 +60,9 @@ public class BlogController {
 	}
 	@RequestMapping("/admin/basic")
 	public String blogmanage(@PathVariable String id,
-			Model model) {
+			Model model,@AuthUser UserVo uservo) {
+		if(!(id.equals(uservo.getId())))
+			return "redirect:/"+id;
 		BlogVo vo=blogService.get(id);
 		model.addAttribute("vo",vo);
 		return "blog/blog-admin-basic";
@@ -73,7 +75,11 @@ public class BlogController {
 		return "redirect:/"+id;
 	}
 	@RequestMapping("/admin/category")
-	public String category(@PathVariable String id,Model model) {
+	public String category(@PathVariable String id,
+			Model model,
+			@AuthUser UserVo uservo) {
+		if(!(id.equals(uservo.getId())))
+			return "redirect:/"+id;
 		List<CategoryVo> list= blogService.getCategoryList(id);
 		model.addAttribute("list",list);
 		BlogVo blogvo = blogService.get(id);
@@ -81,7 +87,11 @@ public class BlogController {
 		return "blog/blog-admin-category";
 	}
 	@RequestMapping("/admin/write")
-	public String write(@PathVariable String id,Model model) {
+	public String write(@PathVariable String id,
+			Model model,
+			@AuthUser UserVo uservo) {
+		if(!(id.equals(uservo.getId())))
+			return "redirect:/"+id;
 		List<CategoryVo> list= blogService.getCategorytitle(id);
 		
 		BlogVo blogvo = blogService.get(id);
